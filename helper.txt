@@ -3,6 +3,20 @@
 
 // Запуск симфони сервера
     symfony server:start
+    symfony server:stop
+
+// Очистить кеш
+    php bin/console cache:clear
 
 // Создание пустышки контроллера
     php bin/console make:controller IndexController
+
+
+// Тест БД
+    php bin/console doctrine:schema:validate
+
+// МИГРАЦИИ
+// Создать новую
+    php bin/console doctrine:migrations:generate
+// Накатить
+    php bin/console doctrine:migrations:migrate
