@@ -1,0 +1,8 @@
+// Команда для развертывания чистого проекта на симфони
+    symfony new symfony-track.local --version="6.4.*" --webapp
+
+// Запуск симфони сервера
+    symfony server:start
+
+// Создание пустышки контроллера
+    php bin/console make:controller IndexController
