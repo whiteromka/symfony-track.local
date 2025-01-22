@@ -21,15 +21,14 @@ final class Version20250120151033 extends AbstractMigration
     {
         $this->addSql('CREATE SEQUENCE task_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE TABLE task (
-                id BIGSERIAL NOT NULL PRIMARY KEY,
-                owner_id INT NOT NULL, 
-                user_id INT NOT NULL, 
-                name VARCHAR(255) NOT NULL, 
-                descr VARCHAR(5000) DEFAULT NULL, 
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )
-        ');
+            id BIGSERIAL NOT NULL PRIMARY KEY,
+            owner_id INT NOT NULL, 
+            user_id INT NOT NULL, 
+            name VARCHAR(255) NOT NULL, 
+            descr VARCHAR(5000) DEFAULT NULL, 
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ');
     }
 
     public function down(Schema $schema): void

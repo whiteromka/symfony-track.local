@@ -8,15 +8,21 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class IndexController extends AbstractController
 {
-    #[Route('/index', name: 'app_index')]
+    #[Route('/', name: 'app_index')]
     public function index(): Response
     {
-        $a = 1;
-
-        $v =1;
-        //phpinfo();
+        // phpinfo();
         return $this->render('index/index.html.twig', [
             'controller_name' => 'IndexController',
+        ]);
+    }
+
+    #[Route('index/test', name: 'test')]
+    public function test(): Response
+    {
+        $test = [1, 2, 3];
+        return $this->render('index/test.php', [
+            'test' => $test,
         ]);
     }
 }

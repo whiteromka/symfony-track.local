@@ -1,3 +1,9 @@
+// Команды для Docker
+    docker-compose down
+    docker-compose up -d --build
+    docker volume ls               - посмотреть список volume
+    docker volume rm symfony-tracklocal_pgdata     - удалить  volume
+
 // Команда для развертывания чистого проекта на симфони
     symfony new symfony-track.local --version="6.4.*" --webapp
 
@@ -14,7 +20,6 @@
 
 // Тест БД
     php bin/console doctrine:schema:validate
-
 
 // МИГРАЦИИ:
 

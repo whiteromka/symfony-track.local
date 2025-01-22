@@ -1,0 +1,20 @@
+team: Команда
+id, name, createdAt
+
+user:
+id, name, lastName, birthday, createdAt
+
+task:
+id, owner_id, user_id, name, descr, createdAt
+
+column: Колонка на доске
+id, name, team_id, type, createdAt
+
+team_members: Члены команды
+id, user_id, captain_team_id, createdAt
+
+settings_show_team: Настройки - какие команды отображать на доске пользователя
+id, user_id, team_id, createdAt
+
+team_column: Колонки команды на доске
+id, team_id, column_id, sort, createdAt
