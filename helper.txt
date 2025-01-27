@@ -34,3 +34,6 @@
 
 // Entity
     php bin/console make:entity
+
+// После создания Entity можно автоматом создать миграцию
+    php bin/console doctrine:migrations:diff
