@@ -2,7 +2,7 @@ team: Команда
 id, name, createdAt
 
 user:
-id, name, lastName, birthday, createdAt
+id, firstName, lastName, email, passwordHash, birthday, createdAt
 
 task:
 id, owner_id, user_id, name, descr, createdAt
