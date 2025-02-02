@@ -18,3 +18,7 @@ id, user_id, team_id, createdAt
 
 team_column: Колонки команды на доске
 id, team_id, column_id, sort, createdAt
+
+
+
+EXPLAIN (ANALYZE, COST OFF, BUFFERS) SELECT * FROM your_table;
