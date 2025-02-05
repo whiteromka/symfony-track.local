@@ -10,21 +10,20 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250202200355 extends AbstractMigration
+final class Version20250205232428 extends AbstractMigration
 {
     public function up(Schema $schema): void
     {
-        $this->addSql('CREATE TABLE "column" (
+        $this->addSql('CREATE TABLE "team_member" (
             id SERIAL PRIMARY KEY,
-            name VARCHAR(255) NOT NULL,
-            team_id INT NOT NULL,
-            type INT NOT NULL,
-            createdAt TIMESTAMP DEFAULT NULL
+            user_id INT NOT NULL,
+            is_captain BOOLEAN NOT NULL DEFAULT FALSE,
+            created_at TIMESTAMP DEFAULT NULL
         )');
     }
 
     public function down(Schema $schema): void
     {
-        $this->addSql('DROP TABLE "column"');
+        $this->addSql('DROP TABLE "team_member"');
     }
 }

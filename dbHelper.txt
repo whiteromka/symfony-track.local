@@ -10,8 +10,8 @@ id, owner_id, user_id, name, descr, createdAt
 column: Колонка на доске
 id, name, team_id, type, createdAt
 
-team_members: Члены команды
-id, user_id, captain_team_id, createdAt
+team_member: Члены команды
+id, user_id, is_captain, createdAt
 
 settings_show_team: Настройки - какие команды отображать на доске пользователя
 id, user_id, team_id, createdAt
