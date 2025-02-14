@@ -5,19 +5,19 @@ user:
 id, firstName, lastName, email, passwordHash, birthday, createdAt
 
 task:
-id, owner_id, user_id, name, descr, createdAt
+id, ownerId, userId, name, descr, createdAt
 
 column: Колонка на доске
-id, name, team_id, type, createdAt
+id, name, teamId, type, createdAt
 
 team_member: Члены команды
-id, user_id, is_captain, createdAt
+id, userId, isCaptain, createdAt
 
 settings_show_team: Настройки - какие команды отображать на доске пользователя
-id, user_id, team_id, createdAt
+id, userId, teamId, createdAt
 
 team_column: Колонки команды на доске
-id, team_id, column_id, sort, createdAt
+id, teamId, columnId, sort, createdAt
 
 
 
