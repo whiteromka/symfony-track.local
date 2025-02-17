@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\TeamMemberRepository;
+use App\Repository\TeamColumnRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: TeamMemberRepository::class)]
-class TeamMember
+#[ORM\Entity(repositoryClass: TeamColumnRepository::class)]
+class TeamColumn
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -15,23 +15,23 @@ class TeamMember
     private ?int $id = null;
 
     #[ORM\Column]
-    private int $teamId;
+    private ?int $teamId = null;
 
     #[ORM\Column]
-    private int $userId;
+    private ?int $columnId = null;
 
-    #[ORM\Column(type: Types::BOOLEAN)]
-    private bool $isCaptain = false;
+    #[ORM\Column(nullable: true)]
+    private ?int $sort = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $createdAt = null;
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTeamId(): int
+    public function getTeamId(): ?int
     {
         return $this->teamId;
     }
@@ -43,26 +43,26 @@ class TeamMember
         return $this;
     }
 
-    public function getUserId(): int
+    public function getColumnId(): ?int
     {
-        return $this->userId;
+        return $this->columnId;
     }
 
-    public function setUserId(int $userId): static
+    public function setColumnId(int $columnId): static
     {
-        $this->userId = $userId;
+        $this->columnId = $columnId;
 
         return $this;
     }
 
-    public function isCaptain(): bool
+    public function getSort(): ?int
     {
-        return $this->isCaptain;
+        return $this->sort;
     }
 
-    public function setIsCaptain(bool $isCaptain): static
+    public function setSort(?int $sort): static
     {
-        $this->isCaptain = $isCaptain;
+        $this->sort = $sort;
 
         return $this;
     }

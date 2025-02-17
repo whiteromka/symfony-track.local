@@ -11,7 +11,7 @@ column: Колонка на доске
 id, name, teamId, type, createdAt
 
 team_member: Члены команды
-id, userId, isCaptain, createdAt
+id, teamId userId, isCaptain, createdAt
 
 settings_show_team: Настройки - какие команды отображать на доске пользователя
 id, userId, teamId, createdAt
