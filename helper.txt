@@ -40,3 +40,6 @@
 
 // Хрень! Типо создает миграцию на разницу
     php bin/console make:migration
+
+// РОУТИНГ
+php bin/console debug:router

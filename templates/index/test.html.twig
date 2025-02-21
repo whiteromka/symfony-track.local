@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello IndexController!{% endblock %}
+
+{% block body %}
+    <h1>ID: {{ id }} </h1>
+
+    {% for num in test %}
+        <p> {{ num }} </p>
+    {% endfor %}
+{% endblock %}
+
+
+{% block block2 %}
+    <h1> myfirstID: {{ id }}</h1>
+{% endblock %}

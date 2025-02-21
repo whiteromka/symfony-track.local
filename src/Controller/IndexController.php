@@ -20,13 +20,30 @@ final class IndexController extends AbstractController
         ]);
     }
 
-    #[Route('index/test', name: 'test')]
-    public function test(): Response
+    #[Route('index/test/{id}',
+        name: 'test',
+        requirements: ['id' => '\d+'],
+        defaults: ['id' => 1],
+        methods: ['GET', 'POST'])
+    ]
+    public function test(int $id): Response
     {
         $test = [1, 2, 3];
-        return $this->render('index/test.php', [
+        //dd($id);
+        return $this->render(/*'index/test.php'*/ 'index/test.html.twig', [
             'test' => $test,
+            'id' => $id,
         ]);
+    }
+
+    #[Route('index/test2',
+        name: 'test2',
+        methods: ['GET', 'POST'])
+    ]
+    public function test2(Request $request): Response
+    {
+        dd($request);
+        die;
     }
 
 
