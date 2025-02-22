@@ -9,41 +9,38 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class IndexController extends AbstractController
+final class TestController extends AbstractController
 {
-    #[Route('/', name: 'app_index')]
-    public function index(): Response
+    #[Route('/', name: 'phpinfo')]
+    public function phpinfo(): Response
     {
-        // phpinfo();
-        return $this->render('index/index.html.twig', [
-            'controller_name' => 'IndexController',
-        ]);
+        phpinfo();
+        die;
     }
 
-    #[Route('index/test/{id}',
-        name: 'test',
+    #[Route('test/test-route/{id}',
+        name: 'test-route',
         requirements: ['id' => '\d+'],
         defaults: ['id' => 1],
         methods: ['GET', 'POST'])
     ]
-    public function test(int $id): Response
+    public function testRoute(int $id): Response
     {
         $test = [1, 2, 3];
         //dd($id);
-        return $this->render(/*'index/test.php'*/ 'index/test.html.twig', [
+        return $this->render( 'test/test-route.html.twig', [
             'test' => $test,
             'id' => $id,
         ]);
     }
 
-    #[Route('index/test2',
-        name: 'test2',
+    #[Route('test/test-php-view',
+        name: 'test-php-view',
         methods: ['GET', 'POST'])
     ]
-    public function test2(Request $request): Response
+    public function testPhpView(Request $request): Response
     {
-        dd($request);
-        die;
+        return $this->render( 'test/test-php-view.php', ['name' => 'Rom']);
     }
 
 
