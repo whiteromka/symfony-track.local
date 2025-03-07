@@ -8,7 +8,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\PersistentCollection;
 use Symfony\Component\Form\DataTransformerInterface;
 
-
 class TagTransformer implements DataTransformerInterface
 {
     public function __construct(
@@ -27,6 +26,9 @@ class TagTransformer implements DataTransformerInterface
         return implode(', ', $tagNames);
     }
 
+    /**
+     * @param string $value
+     */
     public function reverseTransform(mixed $value = null): ?ArrayCollection
     {
         if (!$value) {

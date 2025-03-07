@@ -2,27 +2,20 @@
 
 namespace App\Entity;
 
-use App\Repository\ColumnRepository;
+use App\Repository\BlogStatusRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ColumnRepository::class)]
-#[ORM\Table(name: '`column`')]
-class Column
+#[ORM\Entity(repositoryClass: BlogStatusRepository::class)]
+class BlogStatus
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue(strategy: 'IDENTITY')]
-    #[ORM\Column(name: 'id', type: 'integer', nullable: false)]
+    #[ORM\GeneratedValue(strategy: "IDENTITY")]
+    #[ORM\Column(name: "id", type: Types::INTEGER, nullable: false)]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
-
-    #[ORM\Column]
-    private ?int $teamId = null;
-
-    #[ORM\Column]
-    private ?int $type = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $createdAt = null;
@@ -40,30 +33,6 @@ class Column
     public function setName(string $name): static
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getTeamId(): ?int
-    {
-        return $this->teamId;
-    }
-
-    public function setTeamId(int $teamId): static
-    {
-        $this->teamId = $teamId;
-
-        return $this;
-    }
-
-    public function getType(): ?int
-    {
-        return $this->type;
-    }
-
-    public function setType(int $type): static
-    {
-        $this->type = $type;
 
         return $this;
     }
