@@ -28,9 +28,15 @@ class Blog
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $createdAt = null;
 
+    // Многие Blog-и имеют одну категорию. Обратная: одна категория включает много блогов
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'blogs')]
     #[ORM\JoinColumn(name: 'category_id', referencedColumnName: 'id')]
     private Category|null $category = null;
+
+    // Многие Blog-и имеют один BlogStatus.
+    #[ORM\ManyToOne(targetEntity: BlogStatus::class, inversedBy: 'blogs')]
+    #[ORM\JoinColumn(name: 'blog_status_id', referencedColumnName: 'id')]
+    private BlogStatus $blogStatus;
 
     # Многие блоги связаны с многими тегами
     #[ORM\JoinTable(name: 'tag_to_blog')]
