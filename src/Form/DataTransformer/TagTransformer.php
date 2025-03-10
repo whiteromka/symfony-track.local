@@ -16,7 +16,7 @@ class TagTransformer implements DataTransformerInterface
     {
     }
 
-    /**
+    /** Из коллекции объектов в строку через запятую
      * @param PersistentCollection<Tag> $value
      */
     public function transform(mixed $value): string
@@ -26,7 +26,7 @@ class TagTransformer implements DataTransformerInterface
         return implode(', ', $tagNames);
     }
 
-    /**
+    /** Из строки в коллекцию объектов
      * @param string $value
      */
     public function reverseTransform(mixed $value = null): ?ArrayCollection
