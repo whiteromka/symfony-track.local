@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\BlogRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -29,7 +30,7 @@ class Blog
     private ?\DateTimeInterface $createdAt = null;
 
     // Многие Blog-и имеют одну категорию. Обратная: одна категория включает много блогов
-    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'blogs')]
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'blogs')] // inversedBy: 'blogs' указывает на обратную связь, у меня ее нет
     #[ORM\JoinColumn(name: 'category_id', referencedColumnName: 'id')]
     private Category|null $category = null;
 
@@ -43,11 +44,23 @@ class Blog
     #[ORM\JoinColumn(name: 'blog_id', referencedColumnName: 'id')]
     #[ORM\InverseJoinColumn(name: 'tag_id', referencedColumnName: 'id')]
     #[ORM\ManyToMany(targetEntity: Tag::class, cascade: ['persist'])]
-    private Collection|PersistentCollection $tags;
+    private ArrayCollection|PersistentCollection $tags;
 
     public function addTag(Tag $tag): void
     {
         $this->tags[] = $tag;
+    }
+
+    public function getTags(): ArrayCollection|PersistentCollection
+    {
+        return $this->tags;
+    }
+
+    public function setTags(ArrayCollection|PersistentCollection $tags): static
+    {
+        $this->tags = $tags;
+
+        return $this;
     }
 
     public function getId(): ?int
@@ -75,18 +88,6 @@ class Blog
     public function setText(string $text): static
     {
         $this->text = $text;
-
-        return $this;
-    }
-
-    public function getTags(): Collection|PersistentCollection
-    {
-        return $this->tags;
-    }
-
-    public function setTags(Collection|PersistentCollection $tags): static
-    {
-        $this->tags = $tags;
 
         return $this;
     }
@@ -124,6 +125,17 @@ class Blog
     {
         $this->category = $category;
 
+        return $this;
+    }
+
+    public function getBlogStatus(): ?BlogStatus
+    {
+        return $this->blogStatus;
+    }
+
+    public function setBlogStatus(?BlogStatus $blogStatus): static
+    {
+        $this->blogStatus = $blogStatus;
         return $this;
     }
 }
