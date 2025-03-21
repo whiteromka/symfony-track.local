@@ -21,6 +21,9 @@ class TagTransformer implements DataTransformerInterface
      */
     public function transform(mixed $value): string
     {
+        if (!$value) {
+            return '';
+        }
         $tagsArray = $value->toArray();
         $tagNames = array_map(fn(Tag $tag) => $tag->getName(), $tagsArray);
         return implode(', ', $tagNames);

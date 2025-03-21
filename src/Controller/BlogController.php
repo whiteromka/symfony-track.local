@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Blog;
 use App\Form\BlogType;
 use App\Repository\BlogRepository;
+use App\Services\MessageGenerator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,10 +16,14 @@ use Symfony\Component\Routing\Attribute\Route;
 final class BlogController extends AbstractController
 {
     #[Route('/', name: 'app_blog_index', methods: ['GET'])]
-    public function index(BlogRepository $blogRepository): Response
+    public function index(BlogRepository $blogRepository, MessageGenerator $mg): Response
     {
+        $message = $mg->getHappyMessage();
+        //$this->addFlash('success', $message);
+
         return $this->render('blog/index.html.twig', [
             'blogs' => $blogRepository->findAll(),
+            'message' => $message,
         ]);
     }
 

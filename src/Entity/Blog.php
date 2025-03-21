@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: BlogRepository::class)]
 class Blog
@@ -17,12 +18,15 @@ class Blog
     #[ORM\Column(name: 'id', type: 'integer', nullable: false)]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message: 'Это обязательно!')]
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
+    #[Assert\NotBlank]
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
+    #[Assert\NotBlank]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $text = null;
 
