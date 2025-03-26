@@ -6,6 +6,7 @@ use App\Entity\Blog;
 use App\Entity\BlogStatus;
 use App\Entity\Category;
 use App\Form\DataTransformer\TagTransformer;
+use App\Repository\CategoryRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -22,7 +23,13 @@ class BlogType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', TextType::class, ['required' => true]) // валидация на клиенте
+            ->add('title', TextType::class, [
+                'required' => true, // валидация на клиенте
+                'help' => 'Заполните обязательно',
+                'attr' => [
+                    'class' => 'aaa'
+                ]
+            ])
             ->add('description', TextType::class, ['required' => true])
             ->add('text', TextareaType::class, ['required' => true])
             ->add('createdAt', null, [
@@ -30,7 +37,13 @@ class BlogType extends AbstractType
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
+                'query_builder' => function (CategoryRepository $repository) {
+                    return $repository->createQueryBuilder('category')->orderBy('category.name', 'ASC');
+                },
                 'choice_label' => 'name',
+                'required' => false,
+                'placeholder' => ' -- выбор категории --',
+                'empty_data' => '',
             ])
             ->add('blogStatus', EntityType::class, [
                 'class' => BlogStatus::class,

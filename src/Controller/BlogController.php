@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Blog;
+use App\Filter\BlogFilter;
+use App\Form\BlogFilterType;
 use App\Form\BlogType;
 use App\Repository\BlogRepository;
 use App\Services\MessageGenerator;
@@ -16,14 +18,18 @@ use Symfony\Component\Routing\Attribute\Route;
 final class BlogController extends AbstractController
 {
     #[Route('/', name: 'app_blog_index', methods: ['GET'])]
-    public function index(BlogRepository $blogRepository, MessageGenerator $mg): Response
+    public function index(Request $request, BlogRepository $blogRepository, MessageGenerator $mg): Response
     {
         $message = $mg->getHappyMessage();
-        //$this->addFlash('success', $message);
+
+        $blogFilter = new BlogFilter();
+        $form = $this->createForm(BlogFilterType::class, $blogFilter);
+        $form->handleRequest($request);
 
         return $this->render('blog/index.html.twig', [
-            'blogs' => $blogRepository->findAll(),
+            'blogs' => $blogRepository->findByBlogFilter($blogFilter),
             'message' => $message,
+            'searchForm' => $form->createView(),
         ]);
     }
 
